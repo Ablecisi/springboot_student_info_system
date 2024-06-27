@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ablecisi.mapper.StudentMapper">
+    <!-- 插入 -->
+    <insert id="insertStudent">
+        insert into student_info(number,name,gender,image,phone,birthday,class_id)
+        values(#{number},#{name},#{gender},#{image},#{phone},#{birthday},#{classId})
+    </insert>
+    <!-- 更新 -->
+    <update id="updateStudent">
+        update student_info
+        <set>
+            <if test="name!=null and name!='' ">
+               name=#{name},
+            </if>
+            <if test="gender!=null">
+                gender=#{gender},
+            </if>
+            <if test="image!=null and image!='' ">
+                image=#{image},
+            </if>
+            <if test="birthday!=null">
+                birthday=#{birthday},
+            </if>
+            <if test="classId!=null">
+                class_id=#{classId},
+            </if>
+        </set>
+        where number=#{number}
+    </update>
+    <!-- 根据ID删除 -->
+    <delete id="deleteByNumbers">
+        delete from student_info where number in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 根据部门ID删除 -->
+    <delete id="deleteByClassId">
+        delete from student_info where class_id = #{classId}
+    </delete>
+
+    <!-- 查询总数据数 -->
+    <select id="count" resultType="java.lang.Long">
+        select count(*) from student_info
+    </select>
+
+    <!-- 查询列表 -->
+    <select id="page" resultType="com.ablecisi.entity.Student">
+        select * from student_info
+        <where>
+            <if test="name!=null">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="gender!=null">
+                and gender = #{gender}
+            </if>
+            <if test="birthday!=null">
+                and birthday = #{birthday}
+            </if>
+        </where>
+        limit #{start} , #{pageSize}
+    </select>
+
+    <!-- 查询所有数据(使用pageHelper) -->
+    <!-- 条件查询 -->
+    <select id="list" resultType="com.ablecisi.entity.Student">
+
+        select * from student_info
+        <where>
+            <if test="name!=null and name!='' ">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="gender!=null">
+                and gender = #{gender}
+            </if>
+            <if test="birthday!=null">
+                and birthday = #{birthday}
+            </if>
+        </where>
+        order by id desc
+    </select>
+    <!-- 根据number查询 -->
+    <select id="selectByNumber" resultType="com.ablecisi.entity.Student">
+        select * from student_info where number = #{number}
+    </select>
+    <select id="report" resultType="com.ablecisi.entity.Student">
+        select name, class_id, birthday from student_info
+    </select>
+    <select id="man" resultType="java.lang.Integer">
+        select count(*) from student_info where gender = 1;
+    </select>
+</mapper>

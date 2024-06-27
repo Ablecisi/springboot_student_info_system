@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ablecisi.mapper.OperateLogMapper">
+    <insert id="insert">
+        <!--插入日志数据-->
+        insert into operate_log (operate_user, operate_time, class_name, method_name, method_params, return_value, cost_time)
+        values (#{operateUser}, #{operateTime}, #{className}, #{methodName}, #{methodParams}, #{returnValue}, #{costTime})
+    </insert>
+</mapper>

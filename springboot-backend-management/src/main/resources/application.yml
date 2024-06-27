@@ -1,0 +1,71 @@
+#======================= ProjectName =========================#
+#项目名称
+spring.application.name: springboot-web-management
+#=============================================================#
+
+
+#======================= Server ==============================#
+#服务器
+server:
+  #端口
+  port: 8080
+  #配置访问路径
+  address: 127.0.0.1
+#=============================================================#
+
+
+#======================= Spring ==============================#
+#Spring
+spring:
+  #===================== datasource ==========================#
+  datasource:
+    #MySql 数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #MySql 数据库 url jave_web_last_homework
+    url: jdbc:mysql://localhost:3306/jave_web_last_homework
+    #用户名
+    username: root
+    #密码
+    password: root
+  #===========================================================#
+  #===================== upload file =========================#
+  servlet:
+    multipart:
+      #配置单个请求最大文件大小(默认1MB)
+      max-file-size: 10MB
+      #配置总的请求最大文件大小(默认10MB)
+      max-request-size: 100MB
+  #===========================================================#
+#=============================================================#
+
+
+#====================== MyBatis ==============================#
+#MyBatis 自动生成日志
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#MyBatis 自动转换下划线成驼峰命名 (a_column ------> aCloumn)
+
+    map-underscore-to-camel-case: true
+#=============================================================#
+
+
+#===================== ALiYunOSS =============================#
+#阿里云
+aliyun:
+  #对象存储OSS
+  oss:
+    #阿里云OSS的地域节点
+    endpoint: https://oss-cn-chengdu.aliyuncs.com
+    #阿里云OSS的存储空间名称
+    bucketName: ablecisi-springboot-web-framework00
+#=============================================================#
+
+
+#===================== Spring事务管理日志 ======================#
+#Spring事务管理日志
+logging:
+  #事务管理日志
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+#=============================================================#

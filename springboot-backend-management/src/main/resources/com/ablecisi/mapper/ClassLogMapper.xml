@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ablecisi.mapper.ClassLogMapper">
+
+    <insert id="insert">
+        insert into
+            class_log(create_time,description)
+            values(#{createTime},#{description})
+    </insert>
+</mapper>
