@@ -6,7 +6,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+git clone https://github.com/Ablecisi/springboot_student_info_system.git
 
 # 进入项目目录
 cd springboot_student_info_system\springboot-frontend-management
