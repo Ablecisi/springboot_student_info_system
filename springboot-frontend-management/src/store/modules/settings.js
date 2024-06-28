@@ -6,15 +6,15 @@ const { showSettings, fixedHeader, sidebarLogo } = defaultSettings
 // 定义状态
 const state = {
   showSettings: showSettings, // 是否显示设置
-  fixedHeader: fixedHeader,   // 是否固定头部
-  sidebarLogo: sidebarLogo    // 侧边栏是否显示Logo
+  fixedHeader: fixedHeader, // 是否固定头部
+  sidebarLogo: sidebarLogo // 侧边栏是否显示Logo
 }
 
 // 定义变更状态的方法
+/* eslint-disable */
 const mutations = {
   // 改变设置
   CHANGE_SETTING: (state, { key, value }) => {
-    // eslint-disable-next-line no-prototype-builtins
     // 如果状态中有这个键
     if (state.hasOwnProperty(key)) {
       // 更新这个键的值

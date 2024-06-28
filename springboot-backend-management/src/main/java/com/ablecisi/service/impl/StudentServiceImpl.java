@@ -1,5 +1,6 @@
 package com.ablecisi.service.impl;
 
+import com.ablecisi.entity.User;
 import com.ablecisi.entity.ZhanBi;
 import com.ablecisi.entity.Student;
 import com.ablecisi.entity.PageBean;
@@ -103,5 +104,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public ZhanBi ZhanBi() {
         return new ZhanBi(studentMapper.count(), studentMapper.man());
+    }
+
+    @Override
+    public Student login(Student student) {
+        return studentMapper.login(student);
     }
 }

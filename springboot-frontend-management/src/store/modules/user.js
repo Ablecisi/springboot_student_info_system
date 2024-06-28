@@ -47,22 +47,19 @@ const actions = {
     })
   },
 
-  // 获取用户信息
+  // 获取用户信息(未使用)
   getInfo({ commit, state }) { // commit 提交 mutation，state 状态
     return new Promise((resolve, reject) => { // 返回一个 Promise 对象
       getInfo(state.token).then(response => { // 调用获取用户信息接口
         const { data } = response // 获取返回的数据
-
         if (!data) { // 如果没有返回数据
           return reject('验证失败，请重新登录。') // 返回错误信息
         }
-
-          const { name, avatar } = data // 获取用户名、头像
-
-        commit('SET_NAME', name) // 设置用户名
+        const { username, avatar } = data // 获取用户名、头像
+        commit('SET_NAME', username) // 设置用户名
         commit('SET_AVATAR', avatar) // 设置头像
         resolve(data) // 成功时 resolve
-      }).catch(error => {   // 失败时 reject
+      }).catch(error => { // 失败时 reject
         reject(error) // 返回错误信息
       })
     })
@@ -85,9 +82,9 @@ const actions = {
   // 删除 token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      removeToken()  // 移除 token
+      removeToken() // 移除 token
       commit('RESET_STATE') // 重置状态
-      resolve()  // 成功时 resolve
+      resolve() // 成功时 resolve
     })
   }
 }

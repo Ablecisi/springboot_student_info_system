@@ -1,7 +1,7 @@
 {
-  "name": "vue-admin-template",
+  "name": "springboot_student_info_system",
   "version": "4.4.0",
-  "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
+  "description": "A springboot_student_info_system with Element UI & axios & iconfont & permission control & lint",
   "author": "Ablecisi <3307268118@qq.com>",
   "scripts": {
     "dev": "vue-cli-service serve",

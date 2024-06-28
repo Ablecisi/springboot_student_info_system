@@ -1,6 +1,7 @@
 package com.ablecisi.mapper;
 
 import com.ablecisi.entity.Student;
+import com.ablecisi.entity.User;
 import com.ablecisi.entity.ZhanBi;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -73,5 +74,11 @@ public interface StudentMapper {
 
     List<Student> report(); // 信息统计
 
+    /**
+     * 查询男女比例
+     * @return 男女比例
+     */
     int man();
+
+    Student login(Student student);
 }

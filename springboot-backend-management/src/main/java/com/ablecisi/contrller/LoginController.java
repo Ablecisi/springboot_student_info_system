@@ -1,5 +1,6 @@
 package com.ablecisi.contrller;
 
+import com.ablecisi.entity.Class;
 import com.ablecisi.entity.Student;
 import com.ablecisi.entity.Result;
 import com.ablecisi.entity.User;
@@ -30,23 +31,38 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private StudentService studentService;
 
     @PostMapping("/login")
     public Result login(@RequestBody User user){
         log.info("登录员工, 参数: student = {}", user);
         User users = userService.login(user);
-
         // 登陆成功,生成JWt令牌
         if (users != null) {
             // 生成JWT令牌
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", users.getId());
             claims.put("username", users.getUsername());
-
+            claims.put("avatar", null);
             String jwt = JwtUtils.generateJwt(claims); // 生成JWT令牌
             return Result.success(jwt);
+        } else {
+            // 尝试学生登陆
+            Student student = new Student();
+            student.setNumber(user.getUsername());
+            student.setPassword(user.getPassword());
+            student = studentService.login(student);
+            if (student != null) {
+                // 生成JWT令牌
+                Map<String, Object> claims = new HashMap<>();
+                claims.put("id", student.getNumber());
+                claims.put("username", student.getName());
+                claims.put("avatar",student.getImage());
+                String jwt = JwtUtils.generateJwt(claims); // 生成JWT令牌
+                return Result.success(jwt);
+            }
+            return Result.error("用户名或密码错误");
         }
-
-        return Result.error("用户名或密码错误");
     }
 }

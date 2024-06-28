@@ -4,15 +4,15 @@
 <mapper namespace="com.ablecisi.mapper.StudentMapper">
     <!-- 插入 -->
     <insert id="insertStudent">
-        insert into student_info(number,name,gender,image,phone,birthday,class_id)
-        values(#{number},#{name},#{gender},#{image},#{phone},#{birthday},#{classId})
+        insert into student_info(number, name, gender, image, phone, birthday, class_id)
+        values (#{number}, #{name}, #{gender}, #{image}, #{phone}, #{birthday}, #{classId})
     </insert>
     <!-- 更新 -->
     <update id="updateStudent">
         update student_info
         <set>
             <if test="name!=null and name!='' ">
-               name=#{name},
+                name=#{name},
             </if>
             <if test="gender!=null">
                 gender=#{gender},
@@ -37,14 +37,17 @@
         </foreach>
     </delete>
 
-    <!-- 根据部门ID删除 -->
+    <!-- 根据班级ID删除 -->
     <delete id="deleteByClassId">
-        delete from student_info where class_id = #{classId}
+        delete
+        from student_info
+        where class_id = #{id}
     </delete>
 
     <!-- 查询总数据数 -->
     <select id="count" resultType="java.lang.Long">
-        select count(*) from student_info
+        select count(*)
+        from student_info
     </select>
 
     <!-- 查询列表 -->
@@ -84,12 +87,22 @@
     </select>
     <!-- 根据number查询 -->
     <select id="selectByNumber" resultType="com.ablecisi.entity.Student">
-        select * from student_info where number = #{number}
+        select *
+        from student_info
+        where number = #{number}
     </select>
     <select id="report" resultType="com.ablecisi.entity.Student">
-        select name, class_id, birthday from student_info
+        select name, class_id, birthday
+        from student_info
     </select>
     <select id="man" resultType="java.lang.Integer">
-        select count(*) from student_info where gender = 1;
+        select count(*)
+        from student_info
+        where gender = 1;
+    </select>
+    <select id="login" resultType="com.ablecisi.entity.Student">
+        select *
+        from student_info
+        where number = #{number} and password = #{password}
     </select>
 </mapper>

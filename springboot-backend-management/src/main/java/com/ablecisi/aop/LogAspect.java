@@ -43,7 +43,7 @@ public class LogAspect {
         // 获取请求头中的JWT令牌，解析令牌
         String jwt = request.getHeader("token");
         Claims claims = JwtUtils.parseJWT(jwt);
-        Integer operateUser = (Integer) claims.get("id");
+        String operateUser = claims.get("id").toString();
 
         // 操作时间
         LocalDateTime operateTime = LocalDateTime.now();

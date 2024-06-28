@@ -15,7 +15,7 @@
         <div class="avatar-wrapper">
           <!-- 用户头像 -->
           <!--使用src动态获取src-->
-          <img :src="src" class="user-avatar" />
+          <img :src="src" class="user-avatar" alt="头像">
           <!--https://ablecisi-springboot-web-framework00.oss-cn-chengdu.aliyuncs.com/5dd0844e-6c6e-4b3c-a422-82828c748551.jpg-->
           <!-- 下拉箭头图标 -->
           <i class="el-icon-caret-bottom" />
@@ -44,6 +44,7 @@ import { mapGetters } from 'vuex' // 引入vuex的mapGetters
 import Breadcrumb from '@/components/Breadcrumb' // 引入Breadcrumb组件
 import Hamburger from '@/components/Hamburger' // 引入Hamburger组件
 import { removeToken } from '@/utils/auth' // 引入auth工具的removeToken方法
+import { getInfo } from '@/api/user'
 
 export default {
   name: 'Navbar', // 组件名
@@ -53,8 +54,13 @@ export default {
   },
   computed: { // 动态获取后端的头像
     src() {
-      // eslint-disable-next-line no-return-assign
-      return this.avatar = 'https://ablecisi-springboot-web-framework00.oss-cn-chengdu.aliyuncs.com/5dd0844e-6c6e-4b3c-a422-82828c748551.jpg'
+      const avatar = getInfo() // 获取用户信息中的头像
+      if (avatar == null) {
+        return avatar // 返回头像
+      } else {
+        // 默认头像
+        return 'https://ablecisi-springboot-web-framework00.oss-cn-chengdu.aliyuncs.com/1541d16a-72d7-4a1e-9665-f3461fd58ffd.jpg'
+      }
     },
     // 使用mapGetters映射vuex中的sidebar和avatar状态
     ...mapGetters([

@@ -7,7 +7,7 @@ export function login(data) {
     data
   })
 }
-
+// (未使用)
 export function getInfo(token) {
   return request({
     url: '/users/info',

@@ -1,5 +1,6 @@
 package com.ablecisi.service;
 
+import com.ablecisi.entity.User;
 import com.ablecisi.entity.ZhanBi;
 import com.ablecisi.entity.Student;
 import com.ablecisi.entity.PageBean;
@@ -33,4 +34,6 @@ public interface StudentService {
     List<Student> report();
 
     ZhanBi ZhanBi();
+
+    Student login(Student student);
 }

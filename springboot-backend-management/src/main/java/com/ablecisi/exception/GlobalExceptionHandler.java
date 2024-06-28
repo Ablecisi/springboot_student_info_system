@@ -22,7 +22,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 返回500 状态码
     public final Result handleAllExceptions(Exception ex) { // 处理异常
         // 这里可以添加你自己的异常处理逻辑，例如记录日志、发送通知等
-        System.out.println(ex.getMessage());
+        System.out.println("错误 === " + ex.getMessage());
         return Result.error("对不起，操作失败，请联系管理员");
     }
 }

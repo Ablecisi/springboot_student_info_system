@@ -14,6 +14,7 @@ public class Student {
 
   private Integer Id;
   private String number;
+  private String password;
   private String name;
   private Integer gender;
   private LocalDate birthday;
