@@ -40,7 +40,7 @@
     <el-dialog ref="form" title="编辑学生" :visible.sync="dialogVisible" width="30%">
       <el-form ref="form" :model="student" label-width="80px" size="mini">
         <el-form-item label="学号">
-          <el-input v-model="student.number" readonly />
+          <el-input id="number" v-model="student.number" readonly />
         </el-form-item>
         <el-form-item label="学生姓名">
           <el-input v-model="student.name" />
@@ -364,4 +364,9 @@ export default {
   height: 100px;
   display: block;
 }
+#number {
+  cursor: not-allowed;
+  border:1px solid #e2e2e2;
+}
+
 </style>

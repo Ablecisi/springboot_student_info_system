@@ -40,16 +40,58 @@ export const constantRoutes = [
     meta: { title: '学生信息管理', icon: 'el-icon-s-tools' }, // 路由的元信息，包括标题和图标
     children: [ // 子路由
       {
-        path: 'class', // 部门管理页面的路由
+        path: 'class',
         name: 'Class', // 路由的名字
-        component: () => import('@/views/class'), // 部门管理页面的组件
+        component: () => import('@/views/class'),
         meta: { title: '班级管理', icon: 'el-icon-menu' } // 路由的元信息，包括标题和图标
       },
       {
-        path: 'student', // 员工管理页面的路由
+        path: 'student',
         name: 'Student', // 路由的名字
-        component: () => import('@/views/student'), // 员工管理页面的组件
+        component: () => import('@/views/student'),
         meta: { title: '学生管理', icon: 'el-icon-user-solid' } // 路由的元信息，包括标题和图标
+      }
+    ]
+  },
+  {
+    path: '/score', // 系统信息管理页面的路由
+    component: Layout, // 使用Layout组件
+    redirect: '/score', // 重定向到/score
+    name: 'Score', // 路由的名字
+    meta: { title: '学生成绩管理', icon: 'el-icon-s-tools' }, // 路由的元信息，包括标题和图标
+    children: [ // 子路由
+      {
+        path: 'scoreReports',
+        name: 'ScoreReports', // 路由的名字
+        component: () => import('@/views/scoreReports'),
+        meta: { title: '成绩单', icon: 'el-icon-s-order' } // 路由的元信息，包括标题和图标
+      },
+      {
+        path: 'examDetails',
+        name: 'ExamDetails', // 路由的名字
+        component: () => import('@/views/examDetails'),
+        meta: { title: '考试详情', icon: 'el-icon-s-grid' } // 路由的元信息，包括标题和图标
+      }
+    ]
+  },
+  {
+    path: '/courseSelection', // 系统信息管理页面的路由
+    component: Layout, // 使用Layout组件
+    redirect: '/courseSelection', // 重定向到/system
+    name: 'CourseSelection', // 路由的名字
+    meta: { title: '学生选课管理', icon: 'el-icon-s-tools' }, // 路由的元信息，包括标题和图标
+    children: [ // 子路由
+      {
+        path: 'courseSelect',
+        name: 'CourseSelect', // 路由的名字
+        component: () => import('@/views/courseSelect/index.vue'),
+        meta: { title: '选课', icon: 'el-icon-star-on' } // 路由的元信息，包括标题和图标
+      },
+      {
+        path: 'courseSelectionDetails',
+        name: 'CourseSelectionDetails', // 路由的名字
+        component: () => import('@/views/courseSelectionDetails/index.vue'),
+        meta: { title: '选课详情', icon: 'el-icon-menu' } // 路由的元信息，包括标题和图标
       }
     ]
   },

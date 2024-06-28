@@ -43,8 +43,8 @@
 import { mapGetters } from 'vuex' // 引入vuex的mapGetters
 import Breadcrumb from '@/components/Breadcrumb' // 引入Breadcrumb组件
 import Hamburger from '@/components/Hamburger' // 引入Hamburger组件
-import {getToken, removeToken} from '@/utils/auth' // 引入auth工具的removeToken方法
-import {jwtDecode} from "jwt-decode"; // 引入jwt-decode库
+import { getToken, removeToken } from '@/utils/auth' // 引入auth工具的removeToken方法
+import { jwtDecode } from 'jwt-decode' // 引入jwt-decode库
 
 export default {
   name: 'Navbar', // 组件名
@@ -80,7 +80,7 @@ export default {
     parseToken() {
       const token = getToken() // 获取token
       // 解析JWt token
-      let decoded = jwtDecode(token)
+      const decoded = jwtDecode(token)
       console.log(decoded) // 打印解析后的token
       return decoded.avatar // 返回解析后的头像
     }
