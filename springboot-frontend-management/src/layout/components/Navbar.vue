@@ -43,8 +43,8 @@
 import { mapGetters } from 'vuex' // 引入vuex的mapGetters
 import Breadcrumb from '@/components/Breadcrumb' // 引入Breadcrumb组件
 import Hamburger from '@/components/Hamburger' // 引入Hamburger组件
-import { removeToken } from '@/utils/auth' // 引入auth工具的removeToken方法
-import { getInfo } from '@/api/user'
+import {getToken, removeToken} from '@/utils/auth' // 引入auth工具的removeToken方法
+import {jwtDecode} from "jwt-decode"; // 引入jwt-decode库
 
 export default {
   name: 'Navbar', // 组件名
@@ -54,19 +54,17 @@ export default {
   },
   computed: { // 动态获取后端的头像
     src() {
-      const avatar = getInfo() // 获取用户信息中的头像
-      if (avatar == null) {
-        return avatar // 返回头像
-      } else {
-        // 默认头像
-        return 'https://ablecisi-springboot-web-framework00.oss-cn-chengdu.aliyuncs.com/1541d16a-72d7-4a1e-9665-f3461fd58ffd.jpg'
-      }
+      // 默认头像
+      return this.parseToken()===null ? 'https://ablecisi-springboot-web-framework00.oss-cn-chengdu.aliyuncs.com/1541d16a-72d7-4a1e-9665-f3461fd58ffd.jpg' : this.parseToken()
     },
     // 使用mapGetters映射vuex中的sidebar和avatar状态
     ...mapGetters([
       'sidebar',
       'avatar'
     ])
+  },
+  mounted() {
+    this.parseToken() // 获取并解析token
   },
   methods: {
     // 切换侧边栏的方法
@@ -77,6 +75,14 @@ export default {
     async logout() {
       removeToken() // 移除token
       this.$router.push('/login') // 跳转到登录页面
+    },
+    // 获取并解析token
+    parseToken() {
+      const token = getToken() // 获取token
+      // 解析JWt token
+      let decoded = jwtDecode(token)
+      console.log(decoded) // 打印解析后的token
+      return decoded.avatar // 返回解析后的头像
     }
   }
 }

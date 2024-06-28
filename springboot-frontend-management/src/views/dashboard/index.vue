@@ -10,9 +10,8 @@
               <el-progress
                 type="circle"
                 :percentage="project_percentage/10"
-                stroke-width="10"
                 :show-text="false"
-                :color="project_colors"
+                :stroke-color="project_colors"
               />
               <div class="textCenter">
                 <div>男</div>
@@ -23,8 +22,6 @@
               <el-progress
                 type="circle"
                 :percentage="project_shengyu()/10"
-                status=""
-                stroke-width="10"
                 :show-text="false"
                 :stroke-color="project_colors"
               />
@@ -42,10 +39,8 @@
               <el-progress
                 type="circle"
                 :percentage="electric_percentage/100"
-                status=""
-                stroke-width="10"
                 :show-text="false"
-                :color="electric_colors"
+                :stroke-color="electric_colors"
               /><!--:format="text"-->
               <div class="textCenter">
                 <div>人数</div>
@@ -136,6 +131,7 @@ export default {
         this.currentPage,
         this.pageSize
       ).then((res) => {
+        console.log(res)
         this.totalCount = res.data.data.total
         this.tableData = res.data.data.rows
       })
