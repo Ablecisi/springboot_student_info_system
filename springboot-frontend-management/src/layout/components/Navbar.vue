@@ -55,7 +55,7 @@ export default {
   computed: { // 动态获取后端的头像
     src() {
       // 默认头像
-      return this.parseToken()===null ? 'https://ablecisi-springboot-web-framework00.oss-cn-chengdu.aliyuncs.com/1541d16a-72d7-4a1e-9665-f3461fd58ffd.jpg' : this.parseToken()
+      return this.parseToken() === null ? 'https://ablecisi-springboot-web-framework00.oss-cn-chengdu.aliyuncs.com/1541d16a-72d7-4a1e-9665-f3461fd58ffd.jpg' : this.parseToken()
     },
     // 使用mapGetters映射vuex中的sidebar和avatar状态
     ...mapGetters([
