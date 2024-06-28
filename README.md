@@ -1,4 +1,4 @@
-# 学生信息管理系统
+# StudentInformationManagementSystem
 
 [English](./README.md) | [简体中文](./README-zh.md)
 
